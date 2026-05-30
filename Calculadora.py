@@ -1,40 +1,72 @@
-import numpy as np
+import math
+
 
 def adicao(x, y):
-    return x + np.add(x, y)
+    return x + y
+
 
 def subtracao(x, y):
     return x - y
 
+
 def multiplicacao(x, y):
-    return np.multiply(x, y)
+    return x * y
+
 
 def divisao(x, y):
+    if y == 0:
+        return "Erro: Divisão por zero"
     return x / y
 
+
 def potencia(x, y):
-    return np.power(x, y)
+    return x ** y
+
 
 def raiz_quadrada(x):
     if x < 0:
         return "Erro: Raiz quadrada de número negativo"
-    return np.sqrt(x)
+    return math.sqrt(x)
+
 
 def fatorial(x):
+    if x < 0:
+        return "Erro: Fatorial de número negativo"
     fat = 1
-    for i in range(x+1):
+    for i in range(1, x + 1):
         fat *= i
     return fat
+
 
 def logaritmo_natural(x):
     if x <= 0:
         return "Erro: Logaritmo de número não positivo"
-    return np.ln(x)
+    return math.log(x)
+
 
 def logaritmo_base10(x):
-    if x < 0:
+    if x <= 0:
         return "Erro: Logaritmo de número não positivo"
-    return np.log(x)
+    return math.log10(x)
+
+
+def seno(x, radianos=False):
+    if not radianos:
+        x = math.radians(x)
+    return math.sin(x)
+
+
+def cosseno(x, radianos=False):
+    if not radianos:
+        x = math.radians(x)
+    return math.cos(x)
+
+
+def tangente(x, radianos=False):
+    if not radianos:
+        x = math.radians(x)
+    return math.tan(x)
+
 
 def menu():
     print("Bem-vindo à Calculadora Científica")
@@ -52,6 +84,7 @@ def menu():
     print("10. Seno")
     print("11. Cosseno")
     print("12. Tangente")
+
 
 def calculadora_cientifica():
     menu()
@@ -73,36 +106,42 @@ def calculadora_cientifica():
             print("Resultado:", divisao(x, y))
         elif escolha == '5':
             print("Resultado:", potencia(x, y))
-    
+
     elif escolha == '6':
         x = float(input("Digite o número: "))
         print("Resultado:", raiz_quadrada(x))
-    
+
     elif escolha == '7':
         x = int(input("Digite o número: "))
         print("Resultado:", fatorial(x))
-    
+
     elif escolha == '8':
         x = float(input("Digite o número: "))
         print("Resultado:", logaritmo_natural(x))
-    
+
     elif escolha == '9':
         x = float(input("Digite o número: "))
         print("Resultado:", logaritmo_base10(x))
-    
+
+    elif escolha == '10':
+        x = float(input("Digite o ângulo em graus: "))
+        print("Resultado:", seno(x))
+
     elif escolha == '11':
         x = float(input("Digite o ângulo em graus: "))
         print("Resultado:", cosseno(x))
-    
+
     elif escolha == '12':
         x = float(input("Digite o ângulo em graus: "))
-        print("Resultado:", tangente(x, radianos=False))
+        print("Resultado:", tangente(x))
 
     else:
         print("Operação inválida. Tente novamente.")
-    
+
     continuar = input("Deseja realizar outra operação? (s/n): ")
     if continuar.lower() == 's':
         calculadora_cientifica()
 
-calculadora_cientifica()
+
+if __name__ == "__main__":
+    calculadora_cientifica()
